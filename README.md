@@ -1,27 +1,13 @@
-# AI in CLI
-
-## Built using Llama & OpenAI using OpenAI Chat Model
+# AI in CLI built using [Llama](https://gpt-index.readthedocs.io/en/latest/index.html) & [OpenAI](https://platform.openai.com/docs/introduction/overview) using OpenAI Chat Model
 
 ## What does this repository contains?
 
 - This repository contains two files ie. `construct.py` & `run.py` and these files helps in constructing your data into OpenAI and getting results for your prompt from OpenAI Chat Model
 - `construct.py` helps to create the embedding from your files available in `docs` directory
 - `run.py` runs your prompt through the same embedding
-- `docs` directory contains your training-data or knowledge-base. You can keep below mentioned file types in your `docs` directory -
-  - ".pdf"
-  - ".docx"
-  - ".pptx"
-  - ".jpg"
-  - ".png"
-  - ".jpeg"
-  - ".mp3"
-  - ".mp4"
-  - ".csv"
-  - ".epub"
-  - ".md"
-  - ".mbox"
+- `docs` directory contains your training-data or knowledge-base. You can keep below mentioned file types in your `docs` directory: `.pdf`, `.docx`, `.pptx`, `.jpg`, `.png`, `.jpeg`, `.mp3`, `.mp4`, `.csv`, `.epub`, `.md`, `.mbox`
 
-## What are OpenAI Embedding?
+## What are OpenAI Embeddings?
 
 OpenAI’s text embeddings measure the relatedness of text strings. Embeddings are commonly used for:
 
