@@ -1,68 +1,45 @@
-# AI in CLI built using [Llama](https://gpt-index.readthedocs.io/en/latest/index.html) & [OpenAI](https://platform.openai.com/docs/introduction/overview) using OpenAI Chat Model
+# PromptPal: An AI-powered command-line assistant
 
-## What does this repository contains?
+Welcome to the repository that showcases the use of [LlamaIndex](https://gpt-index.readthedocs.io/en/latest/index.html) and [OpenAI](https://platform.openai.com/docs/introduction) Chat Model to create an AI-powered CLI.
 
-- This repository contains two files ie. `construct.py` & `run.py` and these files helps in constructing your data into OpenAI and getting results for your prompt from OpenAI Chat Model
-- `construct.py` helps to create the embedding from your files available in `docs` directory
-- `run.py` runs your prompt through the same embedding
-- `docs` directory contains your training-data or knowledge-base. You can keep below mentioned file types in your `docs` directory: `.pdf`, `.docx`, `.pptx`, `.jpg`, `.png`, `.jpeg`, `.mp3`, `.mp4`, `.csv`, `.epub`, `.md`, `.mbox`
+`LlamaIndex` is a powerful tool that allows you to connect your LLMs with external data through a central interface. With OpenAI's state-of-the-art chat model, you can create an intelligent conversational agent that can understand natural language and provide relevant responses.
 
-## What are OpenAI Embeddings?
+This repository contains two files: `construct.py` and `run.py` & one folder `docs`:
+- `construct.py` helps you to create embeddings for your training data stored in the docs directory.
+- `run.py` runs your prompt through the same embeddings and generates responses from the OpenAI Chat Model.
+- `docs` contains the documentation, training-data or knowledge-base. You should not change the directory name or location.
+- In case you want to change the directory name or location, you should name fixes to the above two mentioned files as well.
 
-OpenAI’s text embeddings measure the relatedness of text strings. Embeddings are commonly used for:
+The docs directory can contain various file types such as `.pdf`, `.docx`, `.pptx`, `.jpg`, `.png`, `.jpeg`, `.mp3`, `.mp4`, `.csv`, `.epub`, `.md`, and `.mbox`.
 
-- **Search** (where results are ranked by relevance to a query string)
-- **Clustering** (where text strings are grouped by similarity)
-- **Recommendations** (where items with related text strings are recommended)
-- **Anomaly detection** (where outliers with little relatedness are identified)
-- **Diversity measurement** (where similarity distributions are analyzed)
-- **Classification** (where text strings are classified by their most similar label)
+`OpenAI's text embeddings` are powerful tools that measure the relatedness of text strings. These embeddings can be used for a wide range of applications such as `search`, `clustering`, `recommendations`, `anomaly detection`, `diversity measurement`, and `classification`.
 
-An embedding is a vector (list) of floating point numbers. The distance between two vectors measures their relatedness. Small distances suggest high relatedness and large distances suggest low relatedness.
+To get started with this repository, you need an `OpenAI API key`, `Python version >= 3.11.3`, and `Pip version >= 23.0.1 from Python (3.11)` then you can install the necessary dependencies by running the following command:
 
-## What are the Prerequisites?
-
-- OpenAI API Key
-- Python version >= 3.11.3
-- Pip version >= 23.0.1 from python (3.11)
-
-If you have the correct version of Python & Pip installed, you can use the following command to install the dependencies -
 ```bash
 pip install -r requirements.txt
 ```
 
-## Construct.py:
+- `construct.py` constructs an index using the `GPTSimpleVectorIndex` from documents in a specified directory.
+- The `LLMPredictor` generates embeddings for the documents, and a `PromptHelper` generates prompts for the LLMPredictor.
+- The constructed index is saved as `index.json` to disk in JSON format.
 
-- This script constructs an index using the GPTSimpleVectorIndex from documents in a specified directory.
-- The LLMPredictor is used to generate embeddings for the documents, and a PromptHelper is used to generate prompts for the LLMPredictor. The constructed index is saved to disk in JSON format.
-
-### Usage:
-
-Run the script and keep the docs at the level same as this script.
+## To use construct.py, run the following command:
 
 ```bash
 export OPENAI_API_KEY="sk-xxx...xxx" python construct.py
 ```
 
-Note:
-1. Make sure to set up the dependencies and provide the necessary API credentials before running the script.
-2. Once your `construct.py` is successfully run, then you should see an index.json file containing embeddings.
+Note that you need to set up the dependencies and provide the necessary API credentials before running the script. Once `construct.py` is successfully run, an `index.json` file containing embeddings will be created.
 
-## Run.py:
+`run.py` implements a chatbot using the pre-constructed index. The chatbot takes input text as a command-line argument and generates a response by querying the index. The SentenceEmbeddingOptimizer is used to optimize the responses. The generated response is printed to the console with special markers indicating the start and end of the response.
 
-1. This script implements a chatbot using the GPTSimpleVectorIndex from a pre-constructed index.
-2. The chatbot takes input text as a command line argument and generates a response by querying
-the index.
-3. The SentenceEmbeddingOptimizer is used to optimize the responses. The generated response is
-printed to the console with special markers indicating the start and end of the response.
-
-### Usage:
-
-Run the script with the input text as the command line argument. For example:
+## To use run.py, run the following command with your desired prompt:
 
 ```bash
 export OPENAI_API_KEY="sk-xxx...xxx" python run.py "Hello, how are you?"
 ```
 
-Note:
-Make sure to provide the path to the pre-constructed index in the `GPTSimpleVectorIndex.load_from_disk()` method in the chatbot() function. Also, the chatbot may take some time to generate a response, depending on the complexity of the query and the size of the index.
+**Note** that you need to provide the path to the pre-constructed index in the `GPTSimpleVectorIndex.load_from_disk()` method in the `chatbot()` function. Incase you are planning to change the docs directory name or its path. Also, the chatbot may take some time to generate a response, depending on the complexity of the query and the size of the index.
+
+I hope that this repository helps you to create powerful AI-powered CLI tools. Feel free to modify and extend the code as per your requirements.
